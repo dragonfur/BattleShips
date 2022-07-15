@@ -3,7 +3,6 @@ class Ship {
         this.name = name
         this.length = length
         this.hits = []
-        this.sunkShip = false
     }
 
     hit(number) {
@@ -15,9 +14,7 @@ class Ship {
     }
 
     isSunk() {
-        if (this.hits.length === this.length) {
-            return this.sunkShip = true
-        }
+        return this.hits.length === this.length
     }
 }
 

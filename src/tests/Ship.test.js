@@ -12,7 +12,6 @@ describe('Ship tests', () => {
             name: 'Carrier',
             length: 4,
             hits: [],
-            sunkShip: false
         })
     })
 
