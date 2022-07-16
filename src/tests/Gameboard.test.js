@@ -50,6 +50,15 @@ describe('Test the functions of gameboard', () => {
         expect(gameboard.board).toEqual(testGameBoard)
     })
 
+    test("Can't overlap ships", () => {
+        gameboard.placeShip(ship, 2, 2, true)
+        expect(gameboard.canPlace(ship, 2, 1, false)).toBe(false)
+    })
+
+    test("Can't place ships outside of boundary", () => {
+        expect(gameboard.canPlace(ship, 10, 10, false)).toBe(false)
+    })
+
     test('Hits a ship', () => {
         gameboard.placeShip(ship, 1, 1, false)
         gameboard.receiveAttack(1, 1)

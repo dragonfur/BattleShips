@@ -20,6 +20,10 @@ class Gameboard {
 
     placeShip(Ship, row, col, vertical) {
         
+        if (this.canPlace(Ship, row, col, vertical) === false) {
+            return
+        }
+
         if (vertical) {
             for (let i = 0; i < Ship.length; i++)
             this.board[row + i][col] = {
@@ -39,15 +43,10 @@ class Gameboard {
     }
 
     receiveAttack(row, col) {
-        
-        if (this.board[row][col].canHit === true) {
-            this.board[row][col].canHit = false
-            if (this.board[row][col].hasShip === true) {
-                let hitindex = (this.board[row][col].ShipInfo.hits.length) + 1
-                this.board[row][col].ShipInfo.hit(hitindex)
-            }
-        } else {
-            return
+        this.board[row][col].canHit = false
+        if (this.board[row][col].hasShip === true) {
+            let hitindex = (this.board[row][col].ShipInfo.hits.length) + 1
+            this.board[row][col].ShipInfo.hit(hitindex)
         }
     }
 
@@ -66,8 +65,43 @@ class Gameboard {
                 }
             }
         }
-        return done
     }
+
+    canPlace(ship, row, col, vertical) {
+        let canPlaceShip = true
+
+        //goes out of board
+        for (let i = 0; i < ship.length; i++) {
+            if ((row + i) > 10) {
+                canPlaceShip = false
+                return canPlaceShip
+            }
+        }
+
+        for (let j = 0; j < ship.length; j++) {
+            if ((col + j) > 10) {
+                canPlaceShip = false
+                return canPlaceShip    
+            }
+        }
+
+        if (vertical) {
+            for (let i = 0; i < ship.length; i++) {
+                if (this.board[row + i][col].hasShip === true) {
+                    canPlaceShip = false
+                    return canPlaceShip
+                }
+            }
+        } else {
+            for (let j = 0; j < ship.length; j++) {
+                if (this.board[row][col + j].hasShip === true) {
+                    canPlaceShip = false
+                    return canPlaceShip
+                }
+            }
+        }
+    }
+    
 }
 
 export default Gameboard
