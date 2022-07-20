@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&display=swap');
+
+:root {
+    --primary-color: #2C3333;
+    --secondary-color: #395B64;
+    --tertiary-color: #A5C9CA;
+    --accent-color: #E7F6F2;
+    --ship-color: gray;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+header {
+    font-family: 'Anton', sans-serif;
+    height: 5vh;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    min-width: 90vw;
+    background-color: var(--primary-color);
+}
+
+.Title {
+    font-size: 2rem;
+    color: lightgray;
+}
+
+.content {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.divide {
+    height: 20vmin;
+    width: 1px;
+    background-color: lightgray;
+}
+
+.playerGridName, .opponentPlayerName {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 1rem;
+    padding: .5rem;
+    background-color: var(--tertiary-color);
+    color: var(--primary-color);
+}
+
+.opponentPlayerName {
+    background-color: var(--secondary-color);
+    color: #fff;
+}
+
+.grid {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: repeat(11, auto);
+    column-gap: 3px;
+    row-gap: 3px;
+}
+
+.cell {
+    width: 4.6vmin;
+    aspect-ratio: 1;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--tertiary-color);
+    transition: background-color .15s ease-in-out;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cellCoord {
+    width: 4.6vmin;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.opponent > .grid > .cell {
+    background-color: var(--secondary-color);
+    transition: background-color .15s ease-in-out;
+}
+
+.opponent > .grid > .cell:hover {
+    background-color: var(--tertiary-color);
+}
+
+.grid > .cell:hover {
+    background-color: var(--secondary-color);
+}
+
+.hasShip::after {
+    content: "";
+    width: 20px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: red;
+    position: absolute;
+}
+
+.hasShip.downed::after {
+    content: "";
+    width: 20px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: darkred;
+    position: absolute;
+}
+
+/* missed shots */
+.opponent > .grid > .cell.missedOpp {
+    background-color: var(--tertiary-color);
+}
+
+.cell.missedPlayer {
+    background-color: var(--secondary-color);
+}
+
+/* status */
+
+.statusContainer {
+    display: flex;
+    min-width: 100vw;
+    height: 15vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.Start {
+    background-color: transparent;   
+    padding: .5rem;
+    font-size: large;
+    transition: transform .1s ease-in-out;
+    margin: 1rem;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.Start:hover {
+    transform: scale(1.1);
+}
+
+/* ships container */
+
+.shipsContainer {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.battleshipFive {
+    width: min-content;
+    height: min-content;
+    background-color: var(--ship-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+
+}
+
+.battleshipFour {
+    display: flex;
+    width: min-content;
+    height: min-content;
+    background-color: var(--ship-color);
+}
+
+.battleshipThree {
+    display: flex;
+    width: min-content;
+    height: min-content;
+    background-color: var(--ship-color);
+
+}
+
+.battleshipTwo {
+    display: flex;
+    width: min-content;
+    height: min-content;
+    background-color: var(--ship-color);
+
+}
+
+.bodyPart {
+    width: 4.6vmin;
+    aspect-ratio: 1;
+    border: solid 1px black;
+    transition: .1s;
+}
+
+.bodyPart:hover {
+    background-color: lightgrey;
+}
+
+.status {
+    font-size: 1.5em;
+}
+
+.status>* {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5em;
+}
+
+.status>*>*>input:not(.inputName) {
+    font-size: 1em;
+    width: 7vmin;
+}
+
+/* Ships tray */
+.mainPlayer {
+    position: relative;
+}
+
+.shipsTray {
+    position: absolute;
+    right: 58vmin;
+    display: none;
+}
+
+/* input name */
+.playerOneNameSelector {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    display: none;
+    align-items: center;
+}
+
+.inputContainer {
+    display: flex;
+}
+
+.inputName {
+    font-size: 1.2rem;
+    width: 10vmax;
+}
