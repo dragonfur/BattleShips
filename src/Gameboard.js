@@ -50,6 +50,16 @@ class Gameboard {
         }
     }
 
+    canAttack(row, col) {
+        if (this.board[row][col].canHit === false) {
+            return false
+        } else if (this.board[row][col].canHit === true) {
+            return true
+        } else {
+            return
+        }
+    }
+
     isGameOver() {
         let done = false
         for (let i = 0; i < this.board.length; i++ ) {
@@ -68,40 +78,35 @@ class Gameboard {
     }
 
     canPlace(ship, row, col, vertical) {
-        let canPlaceShip = true
-
-        //goes out of board
-        for (let i = 0; i < ship.length; i++) {
-            if ((row + i) > 10) {
-                canPlaceShip = false
-                return canPlaceShip
+        if (vertical) {
+            if ((row + ship.length) > 10) {
+                return false
             }
-        }
+        } 
 
-        for (let j = 0; j < ship.length; j++) {
-            if ((col + j) > 10) {
-                canPlaceShip = false
-                return canPlaceShip    
-            }
+        if ((col + ship.length) > 10) {
+            return false
         }
 
         if (vertical) {
             for (let i = 0; i < ship.length; i++) {
-                if (this.board[row + i][col].hasShip === true) {
-                    canPlaceShip = false
-                    return canPlaceShip
+                if ("hasShip" in this.board[row+i][col]) {
+                    if (this.board[row + i][col].hasShip === true) {
+                        return false
+                    }
                 }
             }
         } else {
             for (let j = 0; j < ship.length; j++) {
-                if (this.board[row][col + j].hasShip === true) {
-                    canPlaceShip = false
-                    return canPlaceShip
-                }
+                if ("hasShip" in this.board[row][col+j]) {
+                    if (this.board[row][col + j].hasShip === true) {
+                        return false
+                    }
+                } 
             }
         }
+        return true
     }
-    
 }
 
 export default Gameboard

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+    <title>Battleship</title>
+</head>
+<body>
+
+<header>
+    <div class="Title">
+        BATTLESHIP
+    </div>
+</header>
+
+<div class="statusContainer">
+    <div class="status" data-id="status">
+        <button class="Start" data-id="start">
+            Start Game
+        </button>
+        <div class="playerOneNameSelector" data-id="playerOneNameSelector">
+            What is Player 1's name?
+            <div class="inputContainer">
+                <input type="text" class="inputName" placeholder="Fred" data-id="nameChosenPlayerOne">
+                <button class="enterName" data-id="enterName">></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="mainPlayer">
+        <div class="shipsTray">
+            <div class="shipsContainer">
+                <div class="battleshipFive" draggable="true" data-direction="ships">
+                    <div class="bodyPart"></div>
+                    <div class="bodyPart"></div>
+                    <div class="bodyPart"></div>
+                    <div class="bodyPart"></div>
+                    <div class="bodyPart"></div>
+                </div>
+                <div class="battleshipFour" draggable="true" data-direction="ships">
+                    <div class="bodyPart"></div>
+                    <div class="bodyPart"></div>
+                    <div class="bodyPart"></div>
+                    <div class="bodyPart"></div>
+                </div>
+                <div class="battleshipThree" draggable="true" data-direction="ships">
+                    <div class="bodyPart"></div>
+                    <div class="bodyPart"></div>
+                    <div class="bodyPart"></div>
+                </div>
+                <div class="battleshipThree" draggable="true" data-direction="ships">
+                    <div class="bodyPart"></div>
+                    <div class="bodyPart"></div>
+                    <div class="bodyPart"></div>
+                </div>
+                <div class="battleshipTwo" draggable="true" data-direction="ships">
+                    <div class="bodyPart"></div>
+                    <div class="bodyPart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="playerGridName" data-id="playerGridName">
+            YOUR FLEET
+        </div>
+        <div class="grid" data-id="gridPlayerOne">
+            <div class="cellCoord yCoord"></div>
+            <div class="cellCoord yCoord">A</div>
+            <div class="cellCoord yCoord">B</div>
+            <div class="cellCoord yCoord">C</div>
+            <div class="cellCoord yCoord">D</div>
+            <div class="cellCoord yCoord">E</div>
+            <div class="cellCoord yCoord">F</div>
+            <div class="cellCoord yCoord">G</div>
+            <div class="cellCoord yCoord">H</div>
+            <div class="cellCoord yCoord">I</div>
+            <div class="cellCoord yCoord">J</div>
+        </div>    
+    </div>
+    <div class="divide"></div>
+    <div class="opponent">
+        <div class="opponentPlayerName">
+            OPPONENT
+        </div>
+        <div class="grid" data-id="gridPlayerTwo">
+            <div class="cellCoord yCoord">A</div>
+            <div class="cellCoord yCoord">B</div>
+            <div class="cellCoord yCoord">C</div>
+            <div class="cellCoord yCoord">D</div>
+            <div class="cellCoord yCoord">E</div>
+            <div class="cellCoord yCoord">F</div>
+            <div class="cellCoord yCoord">G</div>
+            <div class="cellCoord yCoord">H</div>
+            <div class="cellCoord yCoord">I</div>
+            <div class="cellCoord yCoord">J</div>
+            <div class="cellCoord yCoord"></div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

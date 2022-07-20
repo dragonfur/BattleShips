@@ -50,6 +50,10 @@ describe('Test the functions of gameboard', () => {
         expect(gameboard.board).toEqual(testGameBoard)
     })
 
+    test('Can place ship', () => {
+        expect(gameboard.canPlace(ship, 0, 0, false)).toBe(true)
+    })
+
     test("Can't overlap ships", () => {
         gameboard.placeShip(ship, 2, 2, true)
         expect(gameboard.canPlace(ship, 2, 1, false)).toBe(false)
@@ -63,6 +67,11 @@ describe('Test the functions of gameboard', () => {
         gameboard.placeShip(ship, 1, 1, false)
         gameboard.receiveAttack(1, 1)
         expect(gameboard.board[1][1].ShipInfo.hits.includes(1)).toBe(true)
+    })
+
+    test("Can't attack the same square", () => {
+        gameboard.receiveAttack(1, 1)
+        expect(gameboard.canAttack(1, 1)).toBe(false)
     })
 
     test('Receives multiple hits', () => {
