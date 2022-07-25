@@ -8,6 +8,11 @@
     --tertiary-color: #A5C9CA;
     --accent-color: #E7F6F2;
     --ship-color: gray;
+    --carrier-color: #003865;
+    --battleship-color: #EF5B0C;
+    --submarine-color: #D4F6CC;
+    --cruiser-color: #3CCF4E;
+    --destroyer-color: #FEB139;
 }
 
 body {
@@ -100,28 +105,6 @@ header {
     background-color: var(--tertiary-color);
 }
 
-.grid > .cell:hover {
-    background-color: var(--secondary-color);
-}
-
-.hasShip::after {
-    content: "";
-    width: 20px;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background-color: red;
-    position: absolute;
-}
-
-.hasShip.downed::after {
-    content: "";
-    width: 20px;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background-color: darkred;
-    position: absolute;
-}
-
 /* missed shots */
 .opponent > .grid > .cell.missedOpp {
     background-color: var(--tertiary-color);
@@ -136,7 +119,7 @@ header {
 .statusContainer {
     display: flex;
     min-width: 100vw;
-    height: 15vh;
+    height: max(135px, 15vh);
     justify-content: center;
     align-items: center;
 }
@@ -156,54 +139,28 @@ header {
 
 /* ships container */
 
-.shipsContainer {
-    display: flex;
-    gap: 1rem;
-    flex-direction: column;
-}
-
-.battleshipFive {
+.battleshipVisualizer {
+    position: absolute;
     width: min-content;
     height: min-content;
-    background-color: var(--ship-color);
     margin: 0;
     padding: 0;
     display: flex;
-
+    gap: 3px;
+    left: 0%;
 }
 
-.battleshipFour {
-    display: flex;
-    width: min-content;
-    height: min-content;
-    background-color: var(--ship-color);
-}
-
-.battleshipThree {
-    display: flex;
-    width: min-content;
-    height: min-content;
-    background-color: var(--ship-color);
-
-}
-
-.battleshipTwo {
-    display: flex;
-    width: min-content;
-    height: min-content;
-    background-color: var(--ship-color);
-
+.rotated {
+    flex-direction: column;
+    top: 0%;
 }
 
 .bodyPart {
     width: 4.6vmin;
     aspect-ratio: 1;
-    border: solid 1px black;
     transition: .1s;
-}
-
-.bodyPart:hover {
-    background-color: lightgrey;
+    background-color: var(--secondary-color);
+    border-radius: 5px;
 }
 
 .status {
@@ -214,12 +171,7 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: .5em;
-}
-
-.status>*>*>input:not(.inputName) {
-    font-size: 1em;
-    width: 7vmin;
+    gap: .1vmin
 }
 
 /* Ships tray */
@@ -249,4 +201,101 @@ header {
 .inputName {
     font-size: 1.2rem;
     width: 10vmax;
+}
+
+/* directional button */
+.status {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.changeDirection {
+    background-color: transparent;   
+    padding: .5rem;
+    font-size: large;
+    transition: transform .1s ease;
+    margin: 1rem;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.changeDirection:hover {
+    transform: scale(1.01);
+}
+
+/* test */
+.cell.selected {
+    background-color: var(--secondary-color);
+}
+
+.carrier {
+    background-color: var(--carrier-color);
+}
+
+.battleship {
+    background-color: var(--battleship-color);
+}
+
+.cruiser {
+    background-color: var(--cruiser-color);
+}
+
+.submarine {
+    background-color: var(--submarine-color);
+}
+
+.destroyer {
+    background-color: var(--destroyer-color);
+}
+
+#hit {
+    background-color: greenyellow;
+}
+
+#miss {
+    background-color: red;
+}
+
+@media screen and (max-width: 900px) {
+    .content {
+        flex-direction: column;
+    }
+
+    .divide {
+        height: 1px;
+        width: 20vmin;
+    }
+}
+
+@media screen and (max-width: 450px) {
+
+    .statusContainer {
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+
+    .status {
+        text-align: center;
+        padding-left: 2%;
+        padding-right: 2%;
+    }
+
+    .content {
+        flex-direction: column;
+        margin-bottom: 10%;
+        gap: 5vmin;
+    }
+
+    .cell {
+        width: 7vmin;
+    }
+
+    .cellCoord {
+        width: 7vmin;
+    }
+
+    .divide {
+        height: 1px;
+        width: 20vmin;
+    }
 }
