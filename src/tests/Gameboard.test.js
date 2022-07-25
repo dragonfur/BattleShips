@@ -54,6 +54,10 @@ describe('Test the functions of gameboard', () => {
         expect(gameboard.canPlace(ship, 0, 0, false)).toBe(true)
     })
 
+    test('Can place ships vertically', () => {
+        expect(gameboard.canPlace(ship, 0, 9, true)).toBe(true)
+    })
+
     test("Can't overlap ships", () => {
         gameboard.placeShip(ship, 2, 2, true)
         expect(gameboard.canPlace(ship, 2, 1, false)).toBe(false)

@@ -1,4 +1,5 @@
 import Ship from './Ship.js'
+import Player from './Player.js'
 
 class Gameboard {
 
@@ -47,6 +48,9 @@ class Gameboard {
         if (this.board[row][col].hasShip === true) {
             let hitindex = (this.board[row][col].ShipInfo.hits.length) + 1
             this.board[row][col].ShipInfo.hit(hitindex)
+            return true
+        } else {
+            return false
         }
     }
 
@@ -61,32 +65,32 @@ class Gameboard {
     }
 
     isGameOver() {
-        let done = false
+        let gameOver
         for (let i = 0; i < this.board.length; i++ ) {
             for (let j = 0; j < this.board[0].length; j++) {
                 if (this.board[i][j].hasShip === true) {
-                    if (this.board[i][j].ShipInfo.isSunk()) {
-                        done = true
-                        return done
+                    if (!this.board[i][j].ShipInfo.isSunk()) {
+                        return false
                     } else {
-                        done = false
-                        return done
+                        gameOver = true
                     }
                 }
             }
         }
+        return gameOver
     }
 
     canPlace(ship, row, col, vertical) {
         if (vertical) {
-            if ((row + ship.length) > 10) {
+            if ((parseInt(row) + parseInt(ship.length)) > 10) {
                 return false
             }
-        } 
-
-        if ((col + ship.length) > 10) {
-            return false
+        } else {
+            if ((col + ship.length) > 10) {
+                return false
+            }
         }
+
 
         if (vertical) {
             for (let i = 0; i < ship.length; i++) {

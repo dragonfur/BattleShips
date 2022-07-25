@@ -1,13 +1,21 @@
 class Player {
+
     constructor(name) {
         this.name = name
+        this.currentrow
+        this.currentcol
     }
 
     attack(row, col, gameboard) {
         if (gameboard.board[row][col].canHit === false) {
-            return
+            return false
         } else {
-            gameboard.receiveAttack(row, col)
+            const success = gameboard.receiveAttack(row, col)
+            if (success) {
+                return true
+            } else {
+                return false
+            }
         }
     }
 
@@ -19,7 +27,26 @@ class Player {
             col = Math.floor(Math.random() * 10)
         }
         while (gameboard.board[row][col].canHit === false)
-        gameboard.receiveAttack(row, col)
+        const success = gameboard.receiveAttack(row, col)
+        this.grabCoords(row,col)
+        if (success) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    grabCoords(row, col) {
+        if (row === undefined || col === undefined) {
+            return {
+                y: this.currentrow,
+                x: this.currentcol
+            }
+        } else {
+            this.currentrow = row
+            this.currentcol = col
+            return
+        }
     }
 
     randomPlacement(gameboard, ship) {
